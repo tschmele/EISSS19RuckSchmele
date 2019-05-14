@@ -1,0 +1,19 @@
+{
+    "users": [{
+        "name": "testuser1",
+        "group": "vegetarian",
+        "storage": "storage1"
+    }, {
+        "name": "testuser2",
+        "group": "vegan",
+        "storage": "storage2"
+    }, {
+        "name": "testuser3",
+        "group": "omnnivore",
+        "storage": "storage3"
+    }, {
+        "name": "testuser4",
+        "group": "omnivore",
+        "storage": null
+    }]
+}
