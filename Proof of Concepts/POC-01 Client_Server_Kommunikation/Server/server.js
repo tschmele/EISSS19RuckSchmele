@@ -7,7 +7,7 @@ var app = express();
 var testdata = __dirname + '/' + 'test-data.json';
 
 app.get('/', (req, res) => {
-	res.end('hello world');
+	res.end(JSON.stringify('hello world'));
 })
 
 app.get('/listUsers', (req, res) => {
