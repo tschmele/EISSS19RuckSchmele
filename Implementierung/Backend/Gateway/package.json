@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/tschmele/EISSS19RuckSchmele#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "faye": "^1.2.4"
   }
 }
