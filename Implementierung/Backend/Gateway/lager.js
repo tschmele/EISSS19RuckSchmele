@@ -10,16 +10,58 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req,res) => {
-  res.status(200).json(`lager mit ID ${req.params.id}`);
+  if (req.header('origin') === undefined) {
+    res.statusMessage = 'origin undefined';
+    res.status(400).end();
+  } else {
+    msgClient.subscribe('/antwort/' + req.header('origin'), message => {
+      if (res.statusMessage)
+        res.statusMessage = message.statusMessage;
+      res.status(message.status).json(message.results);
+    }).then(() => {
+      msgClient.publish('/lager/' + req.params.id, {
+        origin : req.header('origin'),
+        action : "get"
+      });
+    });
+  }
 });
 
 router.put('/:id', (req, res) => {
-  res.status(200).json(`geändertes lager mit ID ${req.params.id}`);
+  if (req.header('origin') === undefined) {
+    res.statusMessage = 'origin undefined';
+    res.status(400).end();
+  } else {
+    msgClient.subscribe('/antwort/' + req.header('origin'), message => {
+      if (res.statusMessage)
+        res.statusMessage = message.statusMessage;
+      res.status(message.status).json(message.results);
+    }).then(() => {
+      msgClient.publish('/lager/' + req.params.id, {
+        origin : req.header('origin'),
+        action : "put",
+        request : req.body
+      });
+    });
+  }
 });
 
 router.delete('/:id', (req, res) => {
-  res.statusMessage = 'deleted';
-  res.status(204).end();
+  if (req.header('origin') === undefined) {
+    res.statusMessage = 'origin undefined';
+    res.status(400).end();
+  } else {
+    msgClient.subscribe('/antwort/' + req.header('origin'), message => {
+      if (res.statusMessage)
+        res.statusMessage = message.statusMessage;
+      res.status(message.status).json(message.results);
+    }).then(() => {
+      msg.publish('/anzeige/' + req.params.id, {
+        origin : req.header('origin'),
+        action : "delete"
+      });
+    });
+  }
 });
 
 module.exports = router;

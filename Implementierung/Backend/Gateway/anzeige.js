@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
     }).then(() => {
-      msgClient.publish('/anzeige/new', {
+      msgClient.publish('/anzeige/neu', {
         origin : req.header('origin'),
         action : "post",
         request : req.body
