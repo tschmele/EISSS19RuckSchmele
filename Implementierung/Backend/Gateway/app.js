@@ -1,6 +1,8 @@
 var express = require('express'),
+    faye = require('faye'),
     app = express();
 app.use(express.json());
+var msgClient = new faye.Client('http://localhost:3000');
 
 app.get('/', (req, res) => {
   res.json('hello world');
@@ -14,9 +16,25 @@ app.use('/information',(req, res) => {
   res.status(501).end();
 });
 
-app.put('/lebensmittel', (req, res) => {
-  res.statusMessage = 'created';
-  res.status(204).end();
+app.post('/lebensmittel', (req, res) => {
+  if (req.body.lebensmittel === undefined) {
+    res.status(400).end();
+  } else if (req.header('origin') === undefined) {
+    res.statusMessage = 'origin undefined';
+    res.status(400).end();
+  } else {
+    msgClient.subscribe('/antwort/' + req.header('origin'), message => {
+      if (message.statusMessage)
+        res.statusMessage = message.statusMessage;
+      res.status(message.status).json(message.results);
+    }).then(() => {
+      msgClient.publish('/lebensmittel/neu', {
+        origin : req.header('origin'),
+        action : "post",
+        request : req.body
+      });
+    });
+  }
 });
 
 var server = app.listen(process.env.PORT || 8080, () => {

@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
     res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
-      if (res.statusMessage)
+      if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
     }).then(() => {
@@ -38,8 +38,9 @@ router.get('/', (req, res) => {
     res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
-      if (res.statusMessage)
+      if (message.statusMessage) {
         res.statusMessage = message.statusMessage;
+      }
       res.status(message.status).json(message.results);
     }).then(() => {
       if (req.query.radius != null && req.query.radius > 0) {
@@ -67,7 +68,7 @@ router.get('/:id', (req, res) => {
     res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
-      if (res.statusMessage)
+
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
     }).then(() => {
@@ -88,7 +89,7 @@ router.put('/:id', (req, res) => {
     res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
-      if (res.statusMessage)
+      if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
     }).then(() => {
@@ -110,7 +111,7 @@ router.delete('/:id', (req, res) => {
     res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
-      if (res.statusMessage)
+      if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
     }).then(() => {

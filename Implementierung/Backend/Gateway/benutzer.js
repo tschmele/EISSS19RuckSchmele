@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
     res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
-      if (res.statusMessage)
+      if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
     }).then(() => {
@@ -45,7 +45,7 @@ router.post('/:id/kommentar', (req, res) => {
     res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
-      if (res.statusMessage)
+      if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
     }).then(() => {
@@ -64,7 +64,7 @@ router.delete('/:user/kommentar/:comment', (req, res) => {
     res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
-      if (res.statusMessage)
+      if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
     }).then(() => {
