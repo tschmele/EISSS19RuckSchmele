@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Food In Progress</string>
+    <string name="title_display">Anzeige</string>
+    <string name="title_storage">Lager</string>
+    <string name="title_information">Informationen</string>
+
+
+    <string name="title_test1">Hallo Anzeigen</string>
+    <string name="title_test2">Hallo Lager</string>
+    <string name="title_test3">Hallo Informationen</string>
+    <string name="title_test4">Hallo Anzeigen Karte</string>
+    <string name="search">search</string>
+    <string name="map_card">map-card</string>
+    <string name="rows">Rows</string>
+
+    <!-- layout Strings -->
+    <string name="textView_name">Name</string>
+    <string name="textView_amount">Menge</string>
+    <string name="textView_user">User</string>
+    <string name="listView_Image">Image</string>
+
+
+</resources>
