@@ -2,22 +2,23 @@ var express = require('express');
 var router = express.Router();
 
 router.post('/', (req, res) => {
-  res.status(501).end();
+  return res.status(501).end();
 });
 
 router.get('/', (req, res) => {
-  res.status(401).end();
+  return res.status(401).end();
 });
 
 router.get('/:id', (req,res) => {
   if (req.header('origin') === undefined) {
     res.statusMessage = 'origin undefined';
-    res.status(400).end();
+    return res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
       if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
+      return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
       msgClient.publish('/lager/' + req.params.id, {
         origin : req.header('origin'),
@@ -30,12 +31,13 @@ router.get('/:id', (req,res) => {
 router.put('/:id', (req, res) => {
   if (req.header('origin') === undefined) {
     res.statusMessage = 'origin undefined';
-    res.status(400).end();
+    return res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
       if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
+      return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
       msgClient.publish('/lager/' + req.params.id, {
         origin : req.header('origin'),
@@ -49,14 +51,15 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   if (req.header('origin') === undefined) {
     res.statusMessage = 'origin undefined';
-    res.status(400).end();
+    return res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
       if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
+      return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
-      msg.publish('/anzeige/' + req.params.id, {
+      msgClient.publish('/anzeige/' + req.params.id, {
         origin : req.header('origin'),
         action : "delete"
       });

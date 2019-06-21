@@ -10,15 +10,16 @@ var router = express.Router(),
 router.post('/', (req, res) => {
   if (req.body.anfrage === undefined || req.body.autor === undefined
     || req.body.standort === undefined || req.body.titel === undefined) {
-    res.status(400).end();
+    return res.status(400).end();
   } else if (req.header('origin') === undefined) {
     res.statusMessage = 'origin undefined';
-    res.status(400).end();
+    return res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
       if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
+      return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
       msgClient.publish('/anzeige/neu', {
         origin : req.header('origin'),
@@ -35,13 +36,14 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
   if (req.header('origin') === undefined) {
     res.statusMessage = 'origin undefined';
-    res.status(400).end();
+    return res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
       if (message.statusMessage) {
         res.statusMessage = message.statusMessage;
       }
       res.status(message.status).json(message.results);
+      return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
       if (req.query.radius != null && req.query.radius > 0) {
         msgClient.publish('/anzeige/alle', {
@@ -65,12 +67,13 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   if (req.header('origin') === undefined) {
     res.statusMessage = 'origin undefined';
-    res.status(400).end();
+    return res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
-
+      if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
+      return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
       msgClient.publish('/anzeige/' + req.params.id, {
         origin : req.header('origin'),
@@ -86,12 +89,13 @@ router.get('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   if (req.header('origin') === undefined) {
     res.statusMessage = 'origin undefined';
-    res.status(400).end();
+    return res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
       if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
+      return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
       msgClient.publish('/anzeige/' + req.params.id, {
         origin : req.header('origin'),
@@ -108,14 +112,15 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   if (req.header('origin') === undefined) {
     res.statusMessage = 'origin undefined';
-    res.status(400).end();
+    return res.status(400).end();
   } else {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
       if (message.statusMessage)
         res.statusMessage = message.statusMessage;
       res.status(message.status).json(message.results);
+      return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
-      msg.publish('/anzeige/' + req.params.id, {
+      msgClient.publish('/anzeige/' + req.params.id, {
         origin : req.header('origin'),
         action : "delete"
       });
