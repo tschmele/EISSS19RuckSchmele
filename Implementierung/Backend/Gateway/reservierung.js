@@ -1,5 +1,8 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'),
+    faye = require('faye');
+
+var router = express.Router(),
+    msgClient = new faye.Client('http://localhost:3000');
 
 router.post('/', (req, res) => {
   if (req.body.anzeige === undefined) {
