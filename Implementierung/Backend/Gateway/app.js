@@ -38,6 +38,6 @@ app.post('/lebensmittel', (req, res) => {
   }
 });
 
-var server = app.listen(process.env.PORT || 8080, () => {
+var server = app.listen(process.env.PORT || 2000, () => {
   console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
 });

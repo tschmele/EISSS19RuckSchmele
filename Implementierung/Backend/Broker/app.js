@@ -3,7 +3,7 @@ var http = require('http'),
     server = http.createServer(),
     bayeux = new faye.NodeAdapter({mount: '/'});
 
-var demo = true;
+var demo = false;
 
 bayeux.attach(server);
 server.listen(process.env.PORT || 3000, () => {
