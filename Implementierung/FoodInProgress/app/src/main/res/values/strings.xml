@@ -3,21 +3,46 @@
     <string name="title_display">Anzeige</string>
     <string name="title_storage">Lager</string>
     <string name="title_information">Informationen</string>
-
-
     <string name="title_test1">Hallo Anzeigen</string>
     <string name="title_test2">Hallo Lager</string>
     <string name="title_test3">Hallo Informationen</string>
     <string name="title_test4">Hallo Anzeigen Karte</string>
-    <string name="search">search</string>
-    <string name="map_card">map-card</string>
-    <string name="rows">Rows</string>
 
-    <!-- layout Strings -->
+
+    <!-- Layout Strings -->
     <string name="textView_name">Name</string>
     <string name="textView_amount">Menge</string>
     <string name="textView_user">User</string>
     <string name="listView_Image">Image</string>
+    <string name="imageView_profil">Profil-Picture</string>
+    <string name="imageView_profil_background">profil-background</string>
 
+    <!-- Icon Strings-->
+    <string name="map_pin">map-pin</string>
+    <string name="search">search</string>
+    <string name="map_card">map-card</string>
+    <string name="rows">rows</string>
+    <string name="back">back</string>
+
+    <!-- Fragment Display Detail Strings -->
+    <string name="display_name">name</string>
+    <string name="display_dura">durability</string>
+    <string name="display_mob">mobility</string>
+    <string name="display_cat">category</string>
+    <string name="display_amount">amount</string>
+    <string name="display_desc">description</string>
+    <string name="hint_dura">Selcet Data</string>
+
+    <!-- String Array for Spinner -->
+    <string-array name="spinner_elements">
+        <item>Fruit</item>
+        <item>Meat</item>
+        <item>Milk</item>
+        <item>Fish</item>
+        <item>Other</item>
+    </string-array>
+    <string name="title_activity_display">DisplayActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 
 </resources>

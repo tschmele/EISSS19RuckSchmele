@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#1CC372</color>
-    <color name="colorBackground">#FFF</color>
+    <color name="colorBackground">#1CC372</color>
 
-    <!-- Color Buttom Navigation-->
+    <!-- Color Bottom Navigation-->
     <color name="colorButtonNav">#1CC372</color>
-    <color name="colorTopNav">#1CC372</color>
+    <color name="colorTopNav">#FFF</color>
     <color name="colorNavBackground">#FFF</color>
 
 
-    <color name="colorStatusbar">#00574B</color>
+    <color name="colorStatusBar">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 </resources>
