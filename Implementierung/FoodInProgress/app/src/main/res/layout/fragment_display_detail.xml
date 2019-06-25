@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageProfilBackgroundView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/imageView_profil_background" />
+
+    <TextView
+        android:id="@+id/textView_detail_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="20dp"
+        android:paddingStart="10dp"
+        android:text="@string/display_name"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView_detail_durability"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="20dp"
+        android:paddingStart="10dp"
+        android:text="@string/display_dura"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView_detail_mobility"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="20dp"
+        android:paddingStart="10dp"
+        android:text="@string/display_mob"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView_detail_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="299dp"
+        android:layout_marginEnd="20dp"
+        android:paddingStart="10dp"
+        android:text="@string/display_cat"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView_detail_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="339dp"
+        android:layout_marginEnd="20dp"
+        android:paddingStart="10dp"
+        android:text="@string/display_amount"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView_detail_description"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="380dp"
+        android:layout_marginEnd="20dp"
+        android:paddingStart="10dp"
+        android:text="@string/display_desc"
+        android:textSize="24sp" />
+
+</RelativeLayout>
