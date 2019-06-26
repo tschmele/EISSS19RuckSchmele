@@ -21,7 +21,7 @@ public class DisplayFragmentMap extends Fragment {
         return inflater.inflate(R.layout.fragment_display_map, null);
 
     }
-
+/*
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
@@ -52,5 +52,5 @@ public class DisplayFragmentMap extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-
+*/
 }

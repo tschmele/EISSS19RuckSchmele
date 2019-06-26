@@ -1,54 +1,92 @@
 package com.example.foodinprogress;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-import com.example.foodinprogress.ui.main.SectionsPagerAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class DisplayActivity extends AppCompatActivity {
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.foodinprogress.ui.main.SectionsPagerAdapter;
+
+
+public class DisplayActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView_display);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DisplayAdapter displayAdapter = new DisplayAdapter(generateData());
-        recyclerView.setAdapter(displayAdapter);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new DisplayFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_message);
+        }
     }
 
-    public DisplayListItem[] generateData(){
-        DisplayListItem[] displayListItems = {
-                new DisplayListItem("Back", R.drawable.ic_back),
-                new DisplayListItem("Row", R.drawable.ic_rows),
-                new DisplayListItem("Pin", R.drawable.ic_pin),
-                new DisplayListItem("Info", R.drawable.ic_information)
-        };
-        return displayListItems;
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_message:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new DisplayFragment()).commit();
+                break;
+            case R.id.nav_chat:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new StorageFragment()).commit();
+                break;
+            case R.id.nav_profile:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new InformationFragment()).commit();
+                break;
+            case R.id.nav_share:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new DisplayFragmentMap()).commit();
+                break;
+            case R.id.nav_send:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new DisplayFragmentOwn()).commit();
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
 
+
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

@@ -1,14 +1,10 @@
 package com.example.foodinprogress;
 
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -38,19 +34,6 @@ public class StorageFragment extends Fragment {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
     }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.top_nav_menu, menu);
-
-        menu.findItem(R.id.action_ic_map).setVisible(false);
-        menu.findItem(R.id.action_ic_row).setVisible(false);
-        menu.findItem(R.id.action_ic_back).setVisible(false);
-
-
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
 }
 
 

@@ -51,7 +51,7 @@ public class EditDisplayFragment extends Fragment {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
     }
-
+/*
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.top_nav_menu, menu);
@@ -63,7 +63,7 @@ public class EditDisplayFragment extends Fragment {
 
         super.onCreateOptionsMenu(menu, inflater);
     }
-
+*/
     public void setDatePickerDialog(final TextView textView){
 
         textView.setOnClickListener(new View.OnClickListener() {

@@ -1,5 +1,6 @@
 package com.example.foodinprogress;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.MenuItem;
@@ -13,13 +14,13 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity /*implements BottomNavigationView.OnNavigationItemSelectedListener */{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+/*
         BottomNavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setOnNavigationItemSelectedListener(this);
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         toolbar.setTitleTextColor(getResources().getColor(R.color.colorPrimary));
         toolbar.setSubtitleTextColor(getResources().getColor(R.color.colorPrimary));
         toolbar.setSubtitle("Hallo Rabe");
-
+*/
     }
 
     private boolean loadFragment(Fragment fragment) {
@@ -45,13 +46,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
-    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
         Fragment fragment = null;
         switch (menuItem.getItemId()) {
             case R.id.navigation_display:
-                fragment = new DisplayFragment();
+                Intent intenten = new Intent(this, DisplayActivity.class);
+                startActivity(intenten);
                 setTitle("Normale Anzeige");
                 break;
             case R.id.navigation_storage:
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return loadFragment(fragment);
     }
 
-    @Override
+
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
         Fragment fragment = null;
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         return true;
                     }
                 });
+
             break;
 
         }

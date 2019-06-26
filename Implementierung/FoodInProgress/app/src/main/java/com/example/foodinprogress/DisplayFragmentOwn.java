@@ -8,19 +8,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
-import com.example.foodinprogress.ui.main.SectionsPagerAdapter;
-import com.google.android.material.tabs.TabLayout;
 
 
-public class DisplayFragment extends Fragment {
+public class DisplayFragmentOwn extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
@@ -33,13 +30,6 @@ public class DisplayFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_display2, container, false);
 
-        /*
-        ViewPager viewPager = view.findViewById(R.id.view_pager);
-        setupViewPager(viewPager);
-        TabLayout tabs = view.findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
-*/
-
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_display);
         LinearLayoutManager linearLayout =  new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayout);
@@ -51,6 +41,16 @@ public class DisplayFragment extends Fragment {
     }
 /*
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.top_nav_menu, menu);
+
+        menu.findItem(R.id.action_ic_row).setVisible(false);
+        menu.findItem(R.id.action_ic_back).setVisible(false);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
 
@@ -59,16 +59,14 @@ public class DisplayFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-
 */
     public DisplayListItem[] generateData(){
         DisplayListItem[] displayListItems = {
-                new DisplayListItem("Back", R.drawable.ic_back),
-                new DisplayListItem("Row", R.drawable.ic_rows),
                 new DisplayListItem("Pin", R.drawable.ic_pin),
                 new DisplayListItem("Info", R.drawable.ic_information)
         };
         return displayListItems;
 
     }
+
 }
