@@ -5,12 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.PlaceholderFragment">
+<!--
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/appBarLayout"
+        android:background="#FFFFFF"
+        android:layout_marginTop="50dp"
+        >
+    </com.google.android.material.tabs.TabLayout>
 
+-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_display"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".DisplayActivity" >
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="48dp">
     </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="0dp" />
+
 
 </RelativeLayout>

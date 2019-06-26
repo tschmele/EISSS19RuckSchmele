@@ -8,6 +8,9 @@
     <string name="title_test3">Hallo Informationen</string>
     <string name="title_test4">Hallo Anzeigen Karte</string>
 
+    <!-- Drawer String -->
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
     <!-- Layout Strings -->
     <string name="textView_name">Name</string>
@@ -41,8 +44,8 @@
         <item>Fish</item>
         <item>Other</item>
     </string-array>
-    <string name="title_activity_display">DisplayActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_display">Anzeigen</string>
+    <string name="tab_text_1">Allgemein</string>
+    <string name="tab_text_2">Eigene</string>
 
 </resources>
