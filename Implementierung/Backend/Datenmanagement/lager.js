@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
       snapshot.forEach(doc => {
         all_docs.push({
           id : doc.id,
-          data : anz
+          data : doc.data()
         });
       });
       return res.status(200).json(all_docs);

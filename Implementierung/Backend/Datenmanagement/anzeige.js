@@ -46,28 +46,31 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
   db.collection(anzeige).get()
   .then(snapshot => {
-    var all_docs = [];
-
+    var promises = [];
     snapshot.forEach(doc => {
-      doc.data().autor.get()
-      .then(autor => {
-        var anz = doc.data();
-        anz.autor = {
-          id : autor.id,
-          name : autor.data().name
-        }
-
-        all_docs.push({
-          id : doc.id,
-          data : anz
+      var prom_new = new Promise((resolve, reject) => {
+        doc.data().autor.get()
+        .then(autor_doc => {
+          var anz = doc.data();
+          anz.autor = {
+            id : autor_doc.id,
+            name : autor_doc.data().name
+          };
+          console.log(anz);
+          resolve(anz);
+        })
+        .catch(err => {
+          reject(err);
         });
-
-        if (all_docs.length > 0)
-          return res.status(200).json(all_docs);
-        else
-          return res.status(404).json();
       });
+      promises.push(prom_new);
     });
+
+    Promise.all(promises).then(results => {
+      return res.status(200).json(results);
+    }).catch(errmsg => {
+      return res.status(500).json({error : errmsg});
+    })
   })
   .catch(err => {
     return res.status(502).json({error : err});
