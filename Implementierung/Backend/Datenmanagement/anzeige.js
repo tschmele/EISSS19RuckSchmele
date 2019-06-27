@@ -92,7 +92,7 @@ router.get('/:id', (req, res) => {
         }
         return res.status(200).json({
           id : doc.id,
-          data : doc.data()
+          data : anz
         });
       });
     }

@@ -10,6 +10,7 @@ admin.initializeApp({
 
 app.use('/anzeige',require('./anzeige'));
 app.use('/lager',require('./lager'));
+app.use('/benutzer',require('./benutzer'));
 
 var server = app.listen(process.env.PORT || 7000, () => {
   console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);

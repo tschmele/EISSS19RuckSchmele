@@ -40,11 +40,10 @@ router.get('/', (req, res) => {
           id : doc.id,
           data : anz
         });
-      }
+      });
       return res.status(200).json(all_docs);
     } else
       return res.status(404).json();
-    });
   })
   .catch(err => {
     return res.status(502).json({error : err});
