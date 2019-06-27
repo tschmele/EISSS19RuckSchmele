@@ -56,8 +56,10 @@ router.get('/', (req, res) => {
             id : autor_doc.id,
             name : autor_doc.data().name
           };
-          console.log(anz);
-          resolve(anz);
+          resolve({
+            id : doc.id,
+            data : anz
+          });
         })
         .catch(err => {
           reject(err);
@@ -114,7 +116,7 @@ router.put('/:id', (req, res) => {
   if (req.body.verbrauch)
     req.body.verbrauch.datum = admin.firestore.Timestamp.fromDate(new Date(req.body.verbrauch.datum));
 
-  db.collection(anzeige).doc(req.params.id).set(req.body, {merge : true})
+  db.collection(anzeige).doc(req.params.id).update(req.body)
   .then(doc => {
       return res.status(204).json();
   })

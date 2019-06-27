@@ -17,13 +17,12 @@ router.post('/', (req, res) => {
 });
 
 /*******************************************************************************
-  TODO
-  > Kommentar-Autoren übersetzen
-    > id und name
-  > Reservierungen übersetzen
-    > id und titel
-  > Lager übersetzen
-    > alles
+  Ruft alle Benutzer auf
+  Übersetzt - wenn vorhanden - bei jedem Benutzer
+    > Referenzen auf Reservierungen zu ID + Titel
+    > Referenzen auf Kommentarautoren zu ID + Name
+    > Referenz auf Lager zu ID + Lager-Daten
+  Antwortet mit dem Benutzer und den übersetzten Daten
 *******************************************************************************/
 router.get('/', (req, res) => {
   db.collection(benutzer).get()
