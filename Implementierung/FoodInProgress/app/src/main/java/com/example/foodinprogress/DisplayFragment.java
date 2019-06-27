@@ -1,29 +1,39 @@
 package com.example.foodinprogress;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
-import com.example.foodinprogress.ui.main.SectionsPagerAdapter;
-import com.google.android.material.tabs.TabLayout;
+import com.example.foodinprogress.data.retrofit.DisplayPost;
+import com.example.foodinprogress.data.retrofit.JsonPlaceholderAPI;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import static com.example.foodinprogress.util.Constants.ERROR;
+import static com.example.foodinprogress.util.Constants.SUCCSESS;
 
 public class DisplayFragment extends Fragment {
 
+    private TextView textViewResult;
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState){
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
     }
@@ -40,8 +50,36 @@ public class DisplayFragment extends Fragment {
         tabs.setupWithViewPager(viewPager);
 */
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://127.0.0.1:2000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceholderAPI jsonPlaceholderAPI = retrofit.create(JsonPlaceholderAPI.class);
+
+        Call<List<DisplayPost>> call = jsonPlaceholderAPI.getDisplayPosts();
+
+        call.enqueue(new Callback<List<DisplayPost>>() {
+            @Override
+            public void onResponse(Call<List<DisplayPost>> call, Response<List<DisplayPost>> response) {
+                String succsess = (String) t.getMessage();
+                Log.d(SUCCSESS, error);
+                Toast.makeText(getContext(), Su , Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<DisplayPost>> call, Throwable t) {
+
+                String error = (String) t.getMessage();
+                Log.d(ERROR, error);
+                Toast.makeText(getContext(), error , Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_display);
-        LinearLayoutManager linearLayout =  new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayout = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayout);
         DisplayAdapter displayAdapter = new DisplayAdapter(generateData());
         recyclerView.setAdapter(displayAdapter);
@@ -49,19 +87,20 @@ public class DisplayFragment extends Fragment {
 
         return view;
     }
-/*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
 
-        if(id == R.id.action_ic_map) {
-            Toast.makeText(getActivity(), "Map", Toast.LENGTH_SHORT).show();
+    /*
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item){
+            int id = item.getItemId();
+
+            if(id == R.id.action_ic_map) {
+                Toast.makeText(getActivity(), "Map", Toast.LENGTH_SHORT).show();
+            }
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
-    }
 
-*/
-    public DisplayListItem[] generateData(){
+    */
+    public DisplayListItem[] generateData() {
         DisplayListItem[] displayListItems = {
                 new DisplayListItem("Back", R.drawable.ic_back),
                 new DisplayListItem("Row", R.drawable.ic_rows),

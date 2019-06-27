@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "400762487242-f7o32gqetiuj7lg2ka8h38nbb53kfc1j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodinprogress",
+            "certificate_hash": "567494dfeecf73bc528df1b0a76123b78133b2c2"
+          }
+        },
+        {
           "client_id": "400762487242-eb1lnl5q633qtofflvl3a2mh3ub05ju9.apps.googleusercontent.com",
           "client_type": 3
         }
