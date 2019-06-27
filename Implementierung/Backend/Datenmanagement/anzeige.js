@@ -69,7 +69,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  db.collection(anzeige).get(req.params.id)
+  db.collection(anzeige).doc(req.params.id).get()
   .then(doc => {
     if (!doc.exists) {
       return res.status(404).json();
