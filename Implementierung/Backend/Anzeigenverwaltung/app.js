@@ -5,11 +5,10 @@ var express = require('express'),
     restClient = new Client();
 app.use(express.json());
 var msgClient = new faye.Client('http://localhost:3000');
-var rest_url = 'http://localhost/4000/anzeige';
-var rest_url_short = 'http://localhost/4000/';
+var rest_url = 'http://localhost:7000/anzeige';
+var rest_url_short = 'http://localhost:7000';
 
 var rest_args = {
-  data : {},
   requestConfig: {
       timeout: 1000,
       noDelay: true,
@@ -35,13 +34,15 @@ var rest_args = {
    }
 *******************************************************************************/
 msgClient.subscribe('/anzeige/*').withChannel((channel, message) => {
+
   var respond = '/antwort/' + message.origin;
   switch (channel) {
     case '/anzeige/neu':
       rest_args.data = message.request;
+      rest_args.headers = { "Content-Type": "application/json" };
       restClient.post(rest_url, rest_args, (data, response) => {
         msgClient.publish(respond, {
-          status : 201,
+          status : response.statusCode,
           results : data
         });
         msgClient.publish('/matching/anzeige', {
@@ -57,11 +58,13 @@ msgClient.subscribe('/anzeige/*').withChannel((channel, message) => {
       });
       break;
     case '/anzeige/alle':
-      if (message.radius)
+      if (message.radius) {
         rest_args.parameters = {radius : message.radius};
+        rest_args.headers = {origin : message.origin};
+      }
       restClient.get(rest_url, rest_args, (data, response) => {
         msgClient.publish(respond, {
-          status : 200,
+          status : response.statusCode,
           results : data
         });
       }).on('error', err => {
@@ -78,7 +81,7 @@ msgClient.subscribe('/anzeige/*').withChannel((channel, message) => {
         case 'get':
           restClient.get(rest_url_short+channel, rest_args, (data, response) => {
             msgClient.publish(respond, {
-              status : 200,
+              status : response.statusCode,
               results : data
             });
           }).on('error', err => {
@@ -92,9 +95,10 @@ msgClient.subscribe('/anzeige/*').withChannel((channel, message) => {
           break;
         case 'put':
           rest_args.data = message.request;
+          rest_args.headers = { "Content-Type": "application/json" };
           restClient.put(rest_url_short+channel, rest_args, (data, response) => {
             msgClient.publish(respond, {
-              status : 200,
+              status : response.statusCode,
               results : data
             });
           }).on('error', err => {
@@ -109,7 +113,7 @@ msgClient.subscribe('/anzeige/*').withChannel((channel, message) => {
         case 'delete':
           restClient.delete(rest_url_short+channel, rest_args, (data, response) => {
             msgClient.publish(respond, {
-              status : 204
+              status : response.statusCode
             });
           }).on('error', err => {
             msgClient.publish(respond, {

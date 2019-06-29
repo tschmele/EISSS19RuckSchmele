@@ -8,8 +8,8 @@ var router = express.Router(),
 
 *******************************************************************************/
 router.post('/', (req, res) => {
-  if (req.body.anfrage === undefined || req.body.autor === undefined
-    || req.body.standort === undefined || req.body.titel === undefined) {
+  if (req.body.anfrage === undefined || req.body.standort === undefined ||
+    req.body.titel === undefined) {
     return res.status(400).end();
   } else if (req.header('origin') === undefined) {
     res.statusMessage = 'origin undefined';
@@ -18,9 +18,14 @@ router.post('/', (req, res) => {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
       if (message.statusMessage)
         res.statusMessage = message.statusMessage;
-      res.status(message.status).json(message.results);
+      if (message.status === 204 || (message.status >= 400 && message.status < 500))
+        res.status(message.status).end();
+      else
+        res.status(message.status).json(message.results);
       return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
+      if (req.body.autor === undefined)
+        req.body.autor = req.header('origin');
       msgClient.publish('/anzeige/neu', {
         origin : req.header('origin'),
         action : "post",
