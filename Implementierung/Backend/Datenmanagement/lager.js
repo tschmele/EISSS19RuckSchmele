@@ -79,7 +79,7 @@ router.put('/:id', (req, res) => {
 
   db.collection(lager).doc(req.params.id).update(req.body)
   .then(doc => {
-      return res.status(204).json();
+    return res.status(204).json();
   })
   .catch(err => {
     return res.status(502).json({error : err});

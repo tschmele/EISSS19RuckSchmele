@@ -108,7 +108,7 @@ router.get('/:id', (req, res) => {
 });
 
 /*******************************************************************************
-  WIP. Ersetzt bisher lediglich die vorhandenen Daten
+
 *******************************************************************************/
 router.put('/:id', (req, res) => {
   if (req.body.standort)
