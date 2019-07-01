@@ -17,8 +17,8 @@
     <string name="textView_amount">Menge</string>
     <string name="textView_user">User</string>
     <string name="listView_Image">Image</string>
-    <string name="imageView_profil">Profil-Picture</string>
-    <string name="imageView_profil_background">profil-background</string>
+    <string name="imageView_profile">Profile-Picture</string>
+    <string name="imageView_profile_background">Profile-Background</string>
 
     <!-- Icon Strings-->
     <string name="map_pin">map-pin</string>
@@ -26,26 +26,49 @@
     <string name="map_card">map-card</string>
     <string name="rows">rows</string>
     <string name="back">back</string>
+    <string name="camera">camera</string>
+    <string name="upload">upload</string>
 
-    <!-- Fragment Display Detail Strings -->
-    <string name="display_name">name</string>
-    <string name="display_dura">durability</string>
-    <string name="display_mob">mobility</string>
-    <string name="display_cat">category</string>
-    <string name="display_amount">amount</string>
-    <string name="display_desc">description</string>
-    <string name="hint_dura">Selcet Data</string>
+    <!-- Franame Display Detail Strings -->
+    <string name="display_name">Name</string>
+    <string name="display_dura">Haltbarkeit</string>
+    <string name="display_mob">Mobilität</string>
+    <string name="display_cat">Kategorie</string>
+    <string name="display_amount">Menge</string>
+    <string name="display_desc">Bezeichnung</string>
+    <string name="display_hint_dura">Select Data</string>
 
-    <!-- String Array for Spinner -->
-    <string-array name="spinner_elements">
+    <!-- Fragment Grocery Detail Strings -->
+    <string name="grocery_name">Name</string>
+    <string name="grocery_dura">Haltbarkeit</string>
+    <string name="grocery_cat">Kategorie</string>
+    <string name="grocery_amount">Menge</string>
+    <string name="grocery_desc">Bezeichnung</string>
+    <string name="grocery_hint_dura">Select Data</string>
+
+    <!-- Fragment Storage Detail Strings -->
+    <string name="storage_name">Name</string>
+    <string name="storage_dura">Haltbarkeit</string>
+    <string name="storage_cat">Kategorie</string>
+    <string name="storage_amount">Menge</string>
+    <string name="storage_desc">Bezeichnung</string>
+    <string name="storage_hint_dura">Select Data</string>
+
+    <!-- String Array for Spinner
+    <string-array title="spinner_elements">
         <item>Fruit</item>
         <item>Meat</item>
         <item>Milk</item>
         <item>Fish</item>
         <item>Other</item>
     </string-array>
-    <string name="title_activity_display">Anzeigen</string>
+    -->
+
+    <string name="title_activity_display">Eigene Anzeigen</string>
     <string name="tab_text_1">Allgemein</string>
     <string name="tab_text_2">Eigene</string>
+    <string name="category">Kategorie</string>
+    <string name="imageView_profile_picture">Profile-Picture</string>
+    <string name="generate_new">Generate new</string>
 
 </resources>

@@ -15,7 +15,7 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value=" AIzaSyDenoBBzraA3g1K8-JQVgVMjwfOENHt6K8U" />
+            android:value="AIzaSyBRaUTCSltFBMKkeH9JKm3oYRC2P0p8-Ek" />
 
         <service
             android:name=".fcm.FipFirebaseMessagingService">

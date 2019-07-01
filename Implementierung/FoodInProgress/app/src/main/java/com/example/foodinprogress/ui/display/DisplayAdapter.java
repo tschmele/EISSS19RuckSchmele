@@ -1,5 +1,8 @@
-package com.example.foodinprogress;
+package com.example.foodinprogress.ui.display;
 
+import android.content.DialogInterface;
+import android.nfc.Tag;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +12,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodinprogress.R;
+
 
 public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHolder> {
 
+    private static final String TAG = "DispalyAdapter";
     private DisplayListItem[] items;
+    private OnItemClickListener onItemClickListener;
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        onItemClickListener = listener;
+    }
 
     public DisplayAdapter(DisplayListItem[] items) {
         this.items = items;
@@ -21,8 +36,8 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
     @NonNull
     @Override
     public DisplayAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_recyclerview_displayitem, null);
-        ViewHolder viewHolder = new ViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_recyclerview_displayitem, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view, onItemClickListener);
         return viewHolder;
     }
 
@@ -41,12 +56,19 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
         TextView textView;
         ImageView imageView;
 
-        ViewHolder(View itemLayoutView) {
+        ViewHolder(View itemLayoutView, final OnItemClickListener listener) {
             super(itemLayoutView);
             textView = itemLayoutView.findViewById(R.id.item_title);
             imageView = itemLayoutView.findViewById(R.id.item_icon);
 
+            itemLayoutView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d(TAG, "View Holder On Click");
 
+                  // TODO: Change from Overview to Detail - Load here new Fragment
+                }
+            });
         }
     }
 

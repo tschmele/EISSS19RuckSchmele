@@ -5,33 +5,48 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_message"
+            android:id="@+id/nav_dispaly"
             android:icon="@drawable/ic_display"
-            android:title="Message"
+            android:title="Eigene Anzeigen"
             tools:ignore="HardcodedText" />
         <item
-            android:id="@+id/nav_chat"
+            android:id="@+id/nav_storage"
             android:icon="@drawable/ic_storage"
-            android:title="Chat"
+            android:title="Lager"
             tools:ignore="HardcodedText" />
         <item
-            android:id="@+id/nav_profile"
+            android:id="@+id/nav_infor"
             android:icon="@drawable/ic_information"
-            android:title="Profile"
+            android:title="Informationen"
             tools:ignore="HardcodedText" />
     </group>
 
-    <item android:title="Communicate"
+    <item android:title="Allgemeine Anzeigen"
         tools:ignore="HardcodedText">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_maps_display"
                 android:icon="@drawable/ic_map"
-                android:title="Share" />
+                android:title="Karte"/>
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_rows_display"
                 android:icon="@drawable/ic_rows"
-                android:title="Send" />
+                android:title="Liste"/>
+        </menu>
+    </item>
+
+
+    <item android:title="-"
+        tools:ignore="HardcodedText">
+        <menu>
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_settings"
+                android:title="Einstellungen"/>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share"
+                android:title="Teilen"/>
         </menu>
     </item>
 

@@ -1,4 +1,4 @@
-package com.example.foodinprogress;
+package com.example.foodinprogress.ui.display;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.foodinprogress.R;
 
 
 public class DisplayFragmentOwn extends Fragment {

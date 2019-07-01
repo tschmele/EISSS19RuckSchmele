@@ -5,17 +5,10 @@ import com.google.gson.annotations.SerializedName;
 public class Location {
 
     @SerializedName("Location")
-    private Double[][] Location;
+    private int log;
 
-    public Location(Double[][] location) {
-        Location = location;
-    }
+    @SerializedName("Location")
+    private int lat;
 
-    public Double[][] getLocation() {
-        return Location;
-    }
 
-    public void setLocation(Double[][] location) {
-        Location = location;
-    }
 }

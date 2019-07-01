@@ -1,4 +1,4 @@
-package com.example.foodinprogress;
+package com.example.foodinprogress.ui.display;
 
 public class DisplayListItem {
 

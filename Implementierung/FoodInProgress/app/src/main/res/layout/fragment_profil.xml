@@ -14,12 +14,12 @@
         android:background="#00C42D2D">
 
         <ImageView
-            android:id="@+id/imageProfilBackgroundView"
+            android:id="@+id/image_gocery_view"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:contentDescription="@string/imageView_profil_background"
+            android:contentDescription="@string/imageView_profile_background"
             app:srcCompat="@drawable/pic_background_2" />
 
         <TextView
@@ -38,7 +38,7 @@
             android:layout_height="150dp"
             android:layout_marginStart="120dp"
             android:layout_marginTop="70dp"
-            android:contentDescription="@string/imageView_profil"
+            android:contentDescription="@string/imageView_profile"
             app:srcCompat="@drawable/pic_user" />
 
         <ImageView

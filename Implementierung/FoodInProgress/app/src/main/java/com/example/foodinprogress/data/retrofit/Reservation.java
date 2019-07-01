@@ -2,12 +2,12 @@ package com.example.foodinprogress.data.retrofit;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UserPost {
+public class Reservation {
 
     @SerializedName("id")
     private String id;
 
-    @SerializedName("data")
-    private UserData userData;
+    @SerializedName("title")
+    private String title;
 
 }

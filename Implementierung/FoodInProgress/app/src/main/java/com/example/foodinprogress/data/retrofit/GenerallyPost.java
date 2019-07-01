@@ -13,10 +13,9 @@ public class GenerallyPost {
     @SerializedName("results")
     private String results;
 
-    public GenerallyPost(Integer status, String statusMessage, String results) {
+    public GenerallyPost(Integer status, String statusMessage) {
         this.status = status;
         this.statusMessage = statusMessage;
-        this.results = results;
     }
 
     public Integer getStatus() {

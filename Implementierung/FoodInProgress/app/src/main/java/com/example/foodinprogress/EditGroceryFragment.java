@@ -6,14 +6,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,28 +20,65 @@ import androidx.fragment.app.Fragment;
 
 import java.util.Calendar;
 
-public class EditDisplayFragment extends Fragment {
+import static com.example.foodinprogress.util.Constants.TAG;
 
-    private final static String TAG = "Hier";
+public class EditGroceryFragment extends Fragment {
+
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_display_detail_edit, container, false);
+        View view = inflater.inflate(R.layout.fragment_grocery_detail_edit, container, false);
 
-        final TextView textView = view.findViewById(R.id.textView_detail_durability_edit);
+        final TextView textView = view.findViewById(R.id.textView_groceryEdit_detail_durability);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setDatePickerDialog(textView);
             }
         });
-
-        final Spinner spinner = view.findViewById(R.id.spinner_display_detail_edit);
+/*
+        final Spinner spinner = view.findViewById(R.id.textView_displayEdit_detail_category);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.my_spinner,
                getResources().getStringArray( R.array.spinner_elements));
         spinner.setAdapter(adapter);
+*/
+        Log.d(TAG, "Edit nach Text view");
+
+
+        final Button buttonOk = view.findViewById(R.id.button_detail_groceryEdit_ok);
+        buttonOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        final Button buttonCancel = view.findViewById(R.id.button_detail_groceryEdit_cancel);
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Cancel", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        final ImageView imageViewCamera = view.findViewById(R.id.icon_grocery_camera);
+        imageViewCamera.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Camera", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        final ImageView imageViewUpload = view.findViewById(R.id.icon_grocery_upload);
+        imageViewUpload.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Upload", Toast.LENGTH_LONG).show();
+            }
+        });
+
         return view;
     }
 
@@ -51,19 +87,7 @@ public class EditDisplayFragment extends Fragment {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
     }
-/*
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.top_nav_menu, menu);
 
-        menu.findItem(R.id.action_ic_map).setVisible(false);
-        menu.findItem(R.id.action_ic_row).setVisible(false);
-        menu.findItem(R.id.action_ic_back).setVisible(false);
-
-
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-*/
     public void setDatePickerDialog(final TextView textView){
 
         textView.setOnClickListener(new View.OnClickListener() {

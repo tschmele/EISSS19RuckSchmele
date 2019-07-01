@@ -29,7 +29,7 @@
     <item
         android:id="@+id/action_ic_profil_pic"
         android:icon="@drawable/pic_user"
-        android:title="@string/imageView_profil"
+        android:title="@string/imageView_profile"
         app:showAsAction="ifRoom" />
 
 </menu>
