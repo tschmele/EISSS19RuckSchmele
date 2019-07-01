@@ -16,15 +16,15 @@ router.post('/', (req, res) => {
   var lager_neu = req.body;
 
   db.collection(lager).add(lager_neu)
-    .then(doc => {
-      return res.status(201).json({
-        id : doc.id,
-        data : lager_neu
-      });
-    })
-    .catch(err => {
-      return res.status(502).json({error : err});
+  .then(doc => {
+    return res.status(201).json({
+      id : doc.id,
+      data : lager_neu
     });
+  })
+  .catch(err => {
+    return res.status(502).json({error : err});
+  });
 });
 
 /*******************************************************************************
@@ -93,6 +93,38 @@ router.delete('/:id', (req, res) => {
   db.collection(lager).doc(req.params.id).delete()
   .then(() => {
     return res.status(204).json();
+  })
+  .catch(err => {
+    return res.status(502).json({error : err});
+  });
+});
+
+/*******************************************************************************
+
+*******************************************************************************/
+router.post('/:id', (req, res) => {
+  db.collection(lager).doc(req.params.id).get()
+  .then(doc => {
+    var neue_lebensmittel = req.body.lebensmittel;
+    var lager_data = doc.data();
+    lager_data.raeume.forEach(raum => {
+      if (raum.name === req.body.raum) {
+        if (raum.inhalt)
+          raum.inhalt = raum.inhalt.concat(neue_lebensmittel);
+        else
+          raum.inhalt = neue_lebensmittel;
+      }
+    });
+    db.collection(lager).doc(req.params.id).set(lager_data)
+    .then(doc => {
+      return res.status(201).json({
+        id : doc.id,
+        data : lager_data
+      });
+    })
+    .catch(err2 => {
+      return res.status(502).json({error : err2});
+    });
   })
   .catch(err => {
     return res.status(502).json({error : err});

@@ -5,8 +5,12 @@ var express = require('express'),
     restClient = new Client();
 app.use(express.json());
 var msgClient = new faye.Client('http://localhost:3000');
-var rest_url = 'http://localhost:7000/anzeige';
-var rest_url_short = 'http://localhost:7000';
+var rest_url = 'http://localhost:7000/anzeige/';
+var rest_url_short = 'http://localhost:7000/';
+
+var server = app.listen(process.env.PORT || 4000, () => {
+  console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
+});
 
 var rest_args = {
   requestConfig: {
@@ -34,7 +38,6 @@ var rest_args = {
    }
 *******************************************************************************/
 msgClient.subscribe('/anzeige/*').withChannel((channel, message) => {
-
   var respond = '/antwort/' + message.origin;
   switch (channel) {
     case '/anzeige/neu':
@@ -134,7 +137,57 @@ msgClient.subscribe('/anzeige/*').withChannel((channel, message) => {
 })
 .then(() => {
   console.log('subscribed to /anzeige/*');
-  var server = app.listen(process.env.PORT || 4000, () => {
-    console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
-  });
+});
+
+msgClient.subscribe('/reservierung/*').withChannel((channel, message) => {
+  var respond = '/antwort/' + message.origin;
+  switch (channel) {
+    case '/reservierung/neu':
+      rest_args.data = message.request;
+      rest_args.headers = { "Content-Type": "application/json" };
+      restClient.post(rest_url_short+'benutzer/'+message.origin+'/reservierung', rest_args, (data, response) => {
+        msgClient.publish(respond, {
+          status : response.statusCode,
+          results : data
+        });
+      }).on('error', err => {
+        msgClient.publish(respond, {
+          status : 500,
+          results : {
+            error : err.toString()
+          }
+        });
+      });
+      break;
+    default:
+      switch (message.action) {
+        case 'delete':
+          rest_args.data = {
+            anzeige : message.request.anzeige,
+            reservierung : true
+          };
+          rest_args.headers = { "Content-Type": "application/json" };
+          restClient.put(rest_url_short+'benutzer/'+message.origin, rest_args, (data, response) => {
+            msgClient.publish(respond, {
+              status : response.statusCode
+            });
+          }).on('error', err => {
+            msgClient.publish(respond, {
+              status : 500,
+              results : {
+                error : err
+              }
+            });
+          });
+          break;
+        default:
+          msgClient.publish(respond, {
+            status : 400,
+            statusMessage : 'invalid action'
+          });
+      }
+  }
+})
+.then(() => {
+  console.log('subscribed to /reservierung/*');
 });

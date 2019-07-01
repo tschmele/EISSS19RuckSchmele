@@ -249,13 +249,59 @@ router.get('/:id', (req, res) => {
 });
 
 /*******************************************************************************
-  WIP. Ersetzt bisher lediglich die vorhandenen Daten
+
 *******************************************************************************/
 router.put('/:id', (req, res) => {
-
-  db.collection(benutzer).doc(req.params.id).set(req.body, {merge : true})
-  .then(doc => {
+  if (req.body.reservierung) {
+    db.collection(benutzer).doc(req.params.id).update({
+      reservierungen : admin.firestore.FieldValue.arrayRemove(
+        db.collection('Anzeige').doc(req.body.anzeige)
+      )
+    })
+    .then(doc => {
+      db.collection('Anzeige').doc(req.body.anzeige).update({
+        reserviert : false
+      })
+      .then(doc => {
+        return res.status(204).json();
+      })
+      .catch(err => {
+        return res.status(502).json({error : err});
+      });
+    })
+    .catch(err => {
+      return res.status(502).json({error : err});
+    });
+  } else {
+    db.collection(benutzer).doc(req.params.id).set(req.body, {merge : true})
+    .then(doc => {
       return res.status(204).json();
+    })
+    .catch(err => {
+      return res.status(502).json({error : err});
+    });
+  }
+});
+
+/*******************************************************************************
+
+*******************************************************************************/
+router.post('/:id/reservierung', (req, res) => {
+  db.collection(benutzer).doc(req.params.id).update({
+    reservierungen : admin.firestore.FieldValue.arrayUnion(
+      db.collection('Anzeige').doc(req.body.anzeige)
+    )
+  })
+  .then(doc => {
+    db.collection('Anzeige').doc(req.body.anzeige).update({
+      reserviert : true
+    })
+    .then(doc => {
+      return res.status(204).json();
+    })
+    .catch(err => {
+      return res.status(502).json({error : err});
+    });
   })
   .catch(err => {
     return res.status(502).json({error : err});
