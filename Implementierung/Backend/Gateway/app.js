@@ -17,7 +17,7 @@ app.use('/information',(req, res) => {
 });
 
 app.post('/lebensmittel', (req, res) => {
-  if (req.body.lebensmittel === undefined) {
+  if (req.body.lebensmittel === undefined || req.body.lager === undefined ||req.body.raum === undefined) {
     return res.status(400).end();
   } else if (req.header('origin') === undefined) {
     res.statusMessage = 'origin undefined';

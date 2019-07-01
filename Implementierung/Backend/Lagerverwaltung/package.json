@@ -1,7 +1,7 @@
 {
-  "name": "datenmanagement",
+  "name": "lagerverwaltung",
   "version": "1.0.0",
-  "description": "Management aller Datenbankzugriffe",
+  "description": "zugriffe auf lager und lebensmitteleinträge",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,8 +13,8 @@
   "author": "tschmele",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/firestore": "^2.2.1",
     "express": "^4.17.1",
-    "firebase-admin": "^8.2.0"
+    "faye": "^1.2.4",
+    "node-rest-client": "^3.1.0"
   }
 }
