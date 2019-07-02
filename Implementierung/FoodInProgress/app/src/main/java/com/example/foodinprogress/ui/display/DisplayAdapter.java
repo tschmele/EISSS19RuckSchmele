@@ -1,7 +1,5 @@
 package com.example.foodinprogress.ui.display;
 
-import android.content.DialogInterface;
-import android.nfc.Tag;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,64 +12,72 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodinprogress.R;
 
+import java.util.ArrayList;
+
 
 public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHolder> {
 
     private static final String TAG = "DispalyAdapter";
-    private DisplayListItem[] items;
-    private OnItemClickListener onItemClickListener;
+    private ArrayList<DisplayListItem> items;
+    //private OnNoteListener onItemClickListener;
 
-    public interface OnItemClickListener{
-        void onItemClick(int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener){
+    private OnNoteListener noteListener;
+/*
+    public void setOnItemClickListener(OnNoteListener listener){
         onItemClickListener = listener;
     }
-
-    public DisplayAdapter(DisplayListItem[] items) {
+*/
+    public DisplayAdapter(ArrayList<DisplayListItem> items, OnNoteListener onNoteListener) {
         this.items = items;
+        this.noteListener = onNoteListener;
     }
 
     @NonNull
     @Override
     public DisplayAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_recyclerview_displayitem, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view, onItemClickListener);
+        ViewHolder viewHolder = new ViewHolder(view, noteListener);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        viewHolder.textView.setText(items[position].getTitle());
-        viewHolder.imageView.setImageResource(items[position].getImageURL());
+        viewHolder.textView.setText(items.get(position).getTitle());
+        viewHolder.imageView.setImageResource(items.get(position).getImageURL());
     }
 
     @Override
     public int getItemCount() {
-        return items.length;
+        return items.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView textView;
         ImageView imageView;
 
-        ViewHolder(View itemLayoutView, final OnItemClickListener listener) {
+        OnNoteListener onNoteListener;
+
+        ViewHolder(View itemLayoutView, final OnNoteListener listener) {
             super(itemLayoutView);
             textView = itemLayoutView.findViewById(R.id.item_title);
             imageView = itemLayoutView.findViewById(R.id.item_icon);
+            this.onNoteListener = listener;
 
-            itemLayoutView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "View Holder On Click");
+            itemLayoutView.setOnClickListener(this);
+        }
 
-                  // TODO: Change from Overview to Detail - Load here new Fragment
-                }
-            });
+        @Override
+        public void onClick(View v) {
+            Log.d(TAG, "View Holder On Click");
+
+            onNoteListener.onItemClick(getAdapterPosition());
+
         }
     }
 
+    public interface OnNoteListener {
+        void onItemClick(int position);
+    }
 
 }
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,11 +18,42 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class StorageFragment extends Fragment {
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_storage, container, false);
 
+        buildRecyclierView(view);
+
+        return view;
+    }
+
+    public DisplayListItem[] generateData() {
+        DisplayListItem[] displayListItems = {
+                new DisplayListItem("Back", R.drawable.ic_back),
+                new DisplayListItem("Row", R.drawable.ic_rows),
+                new DisplayListItem("Pin", R.drawable.ic_pin),
+                new DisplayListItem("Info", R.drawable.ic_information),
+                new DisplayListItem("Back", R.drawable.ic_back),
+                new DisplayListItem("Row", R.drawable.ic_rows),
+                new DisplayListItem("Pin", R.drawable.ic_pin),
+                new DisplayListItem("Info", R.drawable.ic_information),
+                new DisplayListItem("Back", R.drawable.ic_back),
+                new DisplayListItem("Row", R.drawable.ic_rows),
+                new DisplayListItem("Pin", R.drawable.ic_pin),
+                new DisplayListItem("Info", R.drawable.ic_information)
+        };
+        return displayListItems;
+
+    }
+
+    private void buildRecyclierView(View view){
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_storage);
         LinearLayoutManager linearLayout = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayout);
@@ -46,35 +78,8 @@ public class StorageFragment extends Fragment {
         StorageAdapter storageAdapter = new StorageAdapter(generateData());
         recyclerView.setAdapter(storageAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
-        return view;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState){
-        setHasOptionsMenu(true);
-        super.onCreate(savedInstanceState);
-    }
-
-    public DisplayListItem[] generateData() {
-        DisplayListItem[] displayListItems = {
-                new DisplayListItem("Back", R.drawable.ic_back),
-                new DisplayListItem("Row", R.drawable.ic_rows),
-                new DisplayListItem("Pin", R.drawable.ic_pin),
-                new DisplayListItem("Info", R.drawable.ic_information),
-                new DisplayListItem("Back", R.drawable.ic_back),
-                new DisplayListItem("Row", R.drawable.ic_rows),
-                new DisplayListItem("Pin", R.drawable.ic_pin),
-                new DisplayListItem("Info", R.drawable.ic_information),
-                new DisplayListItem("Back", R.drawable.ic_back),
-                new DisplayListItem("Row", R.drawable.ic_rows),
-                new DisplayListItem("Pin", R.drawable.ic_pin),
-                new DisplayListItem("Info", R.drawable.ic_information)
-        };
-        return displayListItems;
-
-    }
 }
 
 

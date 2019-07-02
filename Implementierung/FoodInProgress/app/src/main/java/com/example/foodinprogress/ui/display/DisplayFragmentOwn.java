@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodinprogress.DisplayAdapterOld;
 import com.example.foodinprogress.R;
 
 
@@ -35,7 +36,7 @@ public class DisplayFragmentOwn extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_display);
         LinearLayoutManager linearLayout =  new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayout);
-        DisplayAdapter displayAdapter = new DisplayAdapter(generateData());
+        DisplayAdapterOld displayAdapter = new DisplayAdapterOld(generateData() );
         recyclerView.setAdapter(displayAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 

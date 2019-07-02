@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#1CC372</color>
     <color name="colorBackground">#1CC372</color>
-    <color name="colorNewBackground">#B9FFDD</color>
+    <!-- <color name="colorNewBackground">#B9FFDD</color> -->
+    <color name="colorNewBackground">#F4FFFA</color>
 
 
     <!-- Color Bottom Navigation-->

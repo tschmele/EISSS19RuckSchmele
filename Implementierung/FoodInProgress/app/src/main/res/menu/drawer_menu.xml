@@ -3,6 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <item android:title="Profile und Suche"
+        tools:ignore="HardcodedText">
+        <menu>
+            <item
+                android:id="@+id/nav_profile"
+                android:src="@mipmap/ic_launcher"
+                android:title="Profil"/>
+            <item
+                android:id="@+id/nav_search"
+                android:icon="@drawable/ic_search"
+                android:title="Suche"/>
+        </menu>
+    </item>
+
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_dispaly"
@@ -36,7 +50,7 @@
     </item>
 
 
-    <item android:title="-"
+    <item android:title="Einstellungen und Support"
         tools:ignore="HardcodedText">
         <menu>
             <item

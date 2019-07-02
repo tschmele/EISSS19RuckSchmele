@@ -32,8 +32,8 @@ public class StorageGroceryFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_grocery);
         LinearLayoutManager linearLayout =  new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayout);
-        DisplayAdapter displayAdapter = new DisplayAdapter(generateData());
-        recyclerView.setAdapter(displayAdapter);
+        StorageAdapter storageAdapter = new StorageAdapter(generateData());
+        recyclerView.setAdapter(storageAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         return view;

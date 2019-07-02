@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".DisplayActivity">
 
+    <item
+        android:id="@+id/toolbar_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_search"
+        android:layout_marginStart="350dp">
+
+    </item>
+
+    <!--
     <item
         android:id="@+id/action_ic_map"
         android:icon="@drawable/ic_map"
@@ -31,5 +42,5 @@
         android:icon="@drawable/pic_user"
         android:title="@string/imageView_profile"
         app:showAsAction="ifRoom" />
-
+-->
 </menu>

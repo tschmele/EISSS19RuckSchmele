@@ -82,4 +82,49 @@ public class DisplayPost {
     public void setAuthor(Author author) {
         this.author = author;
     }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public Boolean getRequest() {
+        return request;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDecription() {
+        return decription;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Boolean getReserve() {
+        return reserve;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public Consume getConsume() {
+        return consume;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
 }

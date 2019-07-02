@@ -6,52 +6,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.PlaceholderFragment">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.PlaceholderFragment">
-<!--
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/appBarLayout"
-        android:background="#FFFFFF"
-        android:layout_marginTop="50dp"
-        >
-    </com.google.android.material.tabs.TabLayout>
--->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_display"
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="4dp"
-        android:background="@color/colorNewBackground"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="48dp">
-    </androidx.recyclerview.widget.RecyclerView>
+        tools:context=".ui.main.PlaceholderFragment">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="0dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_display"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorNewBackground"
+            android:padding="4dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="48dp"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/displayButton"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_alignEnd="@+id/view_pager"
-        android:layout_alignBottom="@+id/view_pager"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        app:srcCompat="@drawable/ic_addcircle_white"
-        android:text="@string/generate_new"
-        app:backgroundTint="@color/colorPrimary"
-        app:borderWidth="0.5dp"
-        app:maxImageSize="50dp" />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/displayButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignEnd="@+id/view_pager"
+            android:layout_alignBottom="@+id/view_pager"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/generate_new"
+            app:backgroundTint="@color/colorPrimary"
+            app:borderWidth="0.5dp"
+            app:maxImageSize="50dp"
+            app:srcCompat="@drawable/ic_addcircle_white" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
