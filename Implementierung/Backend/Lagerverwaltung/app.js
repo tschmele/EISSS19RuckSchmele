@@ -44,7 +44,7 @@ msgClient.subscribe('/lager/*').withChannel((channel, message) => {
         });
       });
       break;
-    case '/anzeige/alle':
+    case '/lager/alle':
       if (message.origin === matching) {
         restClient.get(rest_url, rest_args, (data, response) => {
           msgClient.publish(respond, {
