@@ -57,7 +57,9 @@ router.post('/:id/kommentar', (req, res) => {
       msgClient.publish('/kommentar/neu', {
         origin : req.header('origin'),
         action : "post",
-        request : req.body
+        request : {
+          benutzer : req.params.id,
+          kommentar : req.body
       });
     });
   }

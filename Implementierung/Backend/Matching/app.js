@@ -18,10 +18,10 @@ msgClient.subscribe('/matching', message => {
       //one possible match. check if tags fit.
       //if "anfrage" check storage
       if (anzeige.anfrage) {
-        if (checkStorage(anzeige.titel, users[0].lager))
+        if (checkStorage(anzeige.titel, users[0].data.lager))
           //nachricht
       } else {
-        if (checkTags(anzeige.tags, users[0].tags))
+        if (checkTags(anzeige.tags, users[0].data.tags))
           //nachricht
       }
     } else {
@@ -29,10 +29,10 @@ msgClient.subscribe('/matching', message => {
       var matches = [];
       users.forEach(user => {
         if (anzeige.anfrage) {
-          if (checkTags(anzeige.titel, user.lager))
+          if (checkTags(anzeige.titel, user.data.lager))
             matches.push(user);
         } else {
-          if (checkTags(anzeige.tags, user.tags))
+          if (checkTags(anzeige.tags, user.data.tags))
             matches.push(user);
         }
       });
@@ -45,10 +45,10 @@ msgClient.subscribe('/matching', message => {
         //multiple valid matches. find highest rating
         var best_match = [];
         matches.forEach(match => {
-          if (best_match.lenght <= 0 || best_match[0].wertung < match.wertung){
+          if (best_match.lenght <= 0 || best_match[0].data.wertung < match.data.wertung){
             best_match = [];
             best_match.push(match);
-          } else if (best_match[0].wertung === match.wertung)
+          } else if (best_match[0].data.wertung === match.data.wertung)
             best_match.push(match);
         });
         //check remaining matches
