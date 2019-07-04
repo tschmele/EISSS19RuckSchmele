@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+//import android.widget.ImageView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,24 +12,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodinprogress.R;
+import com.example.foodinprogress.dispalydata.Example;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHolder> {
 
     private static final String TAG = "DispalyAdapter";
-    private ArrayList<DisplayListItem> items;
-    //private OnNoteListener onItemClickListener;
+    // private ArrayList<DisplayListItem> items;
+    private List<Example> anzeigen;
 
     private OnNoteListener noteListener;
-/*
-    public void setOnItemClickListener(OnNoteListener listener){
-        onItemClickListener = listener;
-    }
-*/
-    public DisplayAdapter(ArrayList<DisplayListItem> items, OnNoteListener onNoteListener) {
-        this.items = items;
+
+    public DisplayAdapter(ArrayList<Example> anzeigen, OnNoteListener onNoteListener) {
+        //this.items = items;
+        this.anzeigen = anzeigen;
         this.noteListener = onNoteListener;
     }
 
@@ -36,19 +36,19 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
     @Override
     public DisplayAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_recyclerview_displayitem, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view, noteListener);
-        return viewHolder;
+        return new ViewHolder(view, noteListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        viewHolder.textView.setText(items.get(position).getTitle());
-        viewHolder.imageView.setImageResource(items.get(position).getImageURL());
+        Example anzeige = anzeigen.get(position);
+        viewHolder.textView.setText(anzeige.getData().getTitel());
+        viewHolder.imageView.setImageResource(R.mipmap.ic_launcher);
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return anzeigen.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -69,7 +69,6 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
         @Override
         public void onClick(View v) {
             Log.d(TAG, "View Holder On Click");
-
             onNoteListener.onItemClick(getAdapterPosition());
 
         }
@@ -81,44 +80,3 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
 
 }
 
-
-    /*
-    private List<DisplayListItem> displayList;
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView name, amount, category;
-
-        private MyViewHolder(View view) {
-            super(view);
-
-            name = view.findViewById(R.id.relative_display_name);
-            amount = view.findViewById(R.id.relative_display_amount);
-            category = view.findViewById(R.id.relative_display_category);
-
-        }
-    }
-
-
-    public DisplayAdapter(List<DisplayListItem> displayList) {
-        this.displayList = displayList;
-    }
-
-    @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_recyclerview_displayitem, parent, false);
-        return new MyViewHolder(itemView);
-    }
-
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        DisplayListItem displayItem = displayList.get(position);
-        holder.name.setText(displayItem.getName());
-        holder.amount.setText(displayItem.getAmount());
-        holder.category.setText(displayItem.getCategory());
-    }
-
-    @Override
-    public int getItemCount() {
-        return displayList.size();
-    }
-    */
