@@ -48,7 +48,7 @@ msgClient.subscribe('/anzeige/*').withChannel((channel, message) => {
           status : response.statusCode,
           results : data
         });
-        msgClient.publish('/matching/anzeige', {
+        msgClient.publish('/matching', {
           new : data
         });
       }).on('error', err => {

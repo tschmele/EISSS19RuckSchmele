@@ -5,7 +5,7 @@ app.use(express.json());
 var msgClient = new faye.Client('http://localhost:3000');
 
 app.get('/', (req, res) => {
-  res.json('hello world');
+  res.json({hello : "world"});
 });
 
 app.use('/anzeige',require('./anzeige'));
@@ -26,7 +26,9 @@ app.post('/lebensmittel', (req, res) => {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
       if (message.statusMessage)
         res.statusMessage = message.statusMessage;
-      res.status(message.status).json(message.results);
+      res.status(message.status).json({
+        lager : message.results
+      });
       return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
       msgClient.publish('/lebensmittel/neu', {

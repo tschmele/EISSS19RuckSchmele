@@ -286,6 +286,21 @@ router.put('/:id', (req, res) => {
 /*******************************************************************************
 
 *******************************************************************************/
+router.post('/:id', (req, res) => {
+  db.collection(benutzer).doc(req.params.id).update({
+    kommentare : admin.firestore.FieldValue.arrayUnion(req.body)
+  })
+  .then(doc => {
+    return res.status(201).json();
+  })
+  .catch(err => {
+    return res.status(502).json({error : err});
+  });
+});
+
+/*******************************************************************************
+
+*******************************************************************************/
 router.post('/:id/reservierung', (req, res) => {
   db.collection(benutzer).doc(req.params.id).update({
     reservierungen : admin.firestore.FieldValue.arrayUnion(
@@ -297,7 +312,7 @@ router.post('/:id/reservierung', (req, res) => {
       reserviert : true
     })
     .then(doc => {
-      return res.status(204).json();
+      return res.status(201).json();
     })
     .catch(err => {
       return res.status(502).json({error : err});
