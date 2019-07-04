@@ -60,6 +60,7 @@ router.post('/:id/kommentar', (req, res) => {
         request : {
           benutzer : req.params.id,
           kommentar : req.body
+        }
       });
     });
   }

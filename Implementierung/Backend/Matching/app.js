@@ -9,27 +9,27 @@ var server = app.listen(process.env.PORT || 8000, () => {
 });
 
 msgClient.subscribe('/matching', message => {
-  var anzeige = message.data;
-  msgClient.subscribe('/matching/'+message.id, userResults => {
+  var anzeige = message.new.data;
+  msgClient.subscribe('/matching/'+message.new.id, userResults => {
     var users = userResults.results;
     if (users.length <= 0) {
-      //no possible matches. further calc canceled
+      console.log('No matches for: ' + message.new.id);
     } else if (users.length === 1) {
       //one possible match. check if tags fit.
       //if "anfrage" check storage
       if (anzeige.anfrage) {
         if (checkStorage(anzeige.titel, users[0].data.lager))
-          //nachricht
+          notify(message.new.id, users[0]);
       } else {
         if (checkTags(anzeige.tags, users[0].data.tags))
-          //nachricht
+          notify(message.new.id, users[0]);
       }
     } else {
       //multiple possible matches.
       var matches = [];
       users.forEach(user => {
         if (anzeige.anfrage) {
-          if (checkTags(anzeige.titel, user.data.lager))
+          if (checkStorage(anzeige.titel, user.data.lager))
             matches.push(user);
         } else {
           if (checkTags(anzeige.tags, user.data.tags))
@@ -38,9 +38,9 @@ msgClient.subscribe('/matching', message => {
       });
       //count remaining matches
       if (matches.length <= 0) {
-        //no matches end program
+        console.log('No matches for: ' + message.new.id);
       } else if (matches.length === 1) {
-        //one final match. send message
+        notify(message.new.id, matches[0]);
       } else {
         //multiple valid matches. find highest rating
         var best_match = [];
@@ -53,24 +53,24 @@ msgClient.subscribe('/matching', message => {
         });
         //check remaining matches
         if (best_match.lenght === 1) {
-          //one remaining. notify
+          notify(message.new.id, best_match[0])
         } else if (best_match.length > 1) {
           var final_match;
           best_match.forEach(match => {
             if (final_match === undefined || final_match.distance >= match.distance)
               final_match = match;
           });
-          //notify remaining match
+          notify(message.new.id, final_match);
         } else
-          //smth went wrong. error
+          console.log('Validated matches lost for: ' + message.new.id);
       }
     }
-    msgClient.unsubscribe('/matchgin/'+message.id);
+    msgClient.unsubscribe('/matching/'+message.new.id);
   })
   .then(() => {
     msgClient.publish('/matching/benutzer', {
-      id : message.id,
-      standort : message.data.standort,
+      id : message.new.id,
+      standort : anzeige.standort,
       radius : 15
     });
   });
@@ -81,44 +81,60 @@ msgClient.subscribe('/matching', message => {
 
 function checkTags (anz_tags, user_tags) {
   var match = true;
-  user_tags.forEach(user_tag => {
-    anz_tags.forEach(anzeige_tag => {
-      switch (user_tag) {
-        case 'vegetarier':
-          if (anzeige_tag === 'fleisch' || anzeige_tag === 'schwein'
+  if (anz_tags === undefined) {
+    match = true;
+  } else {
+    user_tags.forEach(user_tag => {
+      anz_tags.forEach(anzeige_tag => {
+        switch (user_tag) {
+          case 'vegetarier':
+            if (anzeige_tag === 'fleisch' || anzeige_tag === 'schwein'
             || anzeige_tag === 'rind' || anzeige_tag === 'huhn'
             || anzeige_tag === 'fisch')
             match = false;
-          break;
-        case 'veganer':
-          if (anzeige_tag === 'fleisch' || anzeige_tag === 'schwein'
+            break;
+          case 'veganer':
+            if (anzeige_tag === 'fleisch' || anzeige_tag === 'schwein'
             || anzeige_tag === 'rind' || anzeige_tag === 'huhn'
             || anzeige_tag === 'fisch' || anzeige_tag === 'milch'
             || anzeige_tag === 'ei' || anzeige_tag === 'laktose')
             match = false;
-          break;
-        case 'laktoseintolerant':
-          if (anzeige_tag === 'milch' || anzeige_tag === 'laktose')
+            break;
+          case 'laktoseintolerant':
+            if (anzeige_tag === 'milch' || anzeige_tag === 'laktose')
             match = false;
-          break;
-        case 'stirbt an gluten':
-          if (anzeige_tag === 'gluten')
+            break;
+          case 'stirbt an gluten':
+            if (anzeige_tag === 'gluten')
             match = false;
-          break;
-        default:
-      }
+            break;
+          default:
+        }
+      });
     });
-  });
+  }
   return match;
 }
 
 function checkStorage (titel, storage) {
   var match = false
   storage.raeume.forEach(raum => {
-    raum.inhalt.forEach(inhalt => {
-      if (titel.find(inhalt.lebensmittel) >= 0)
+    if (inhalt != undefined) {
+      raum.inhalt.forEach(inhalt => {
+        if (titel.find(inhalt.lebensmittel) >= 0)
         match = true;
-    });
+      });
+    }
   });
   return match;
+}
+
+function notify (anzeigeID, user) {
+  msgClient.push('/notify/'+user.id, {
+    anzeige : anzeigeID,
+    benutzer : user
+  })
+  .then(() => {
+    console.log("Match für " + anzeigeID + ":\n" + user.id);
+  });
 }

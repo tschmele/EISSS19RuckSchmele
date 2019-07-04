@@ -123,11 +123,11 @@ msgClient.subscribe('/kommentar/neu').withChannel((channel, message) => {
 });
 
 msgClient.subscribe('/matching/benutzer').withChannel((channel, message) => {
-  var origin = new GeoPoint(message.standort.latitude, message.standort.longitude);
+  var origin = new GeoPoint(message.standort._latitude, message.standort._longitude);
   restClient.get(rest_url, rest_args, (data, response) => {
     var possible_matches = [];
     data.forEach(user => {
-      var userLocation = new GeoPoint(user.data.standort.latitude, user.data.standort.longitude);
+      var userLocation = new GeoPoint(user.data.standort._latitude, user.data.standort._longitude);
       var userDistance = userLocation.distanceTo(origin, true);
       if (userDistance <= message.radius) {
         possible_matches.push({
