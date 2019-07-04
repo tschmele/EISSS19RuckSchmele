@@ -71,7 +71,8 @@ msgClient.subscribe('/matching', message => {
     msgClient.publish('/matching/benutzer', {
       id : message.new.id,
       standort : anzeige.standort,
-      radius : 15
+      radius : 15,
+      autor : anzeige.autor.id
     });
   });
 })

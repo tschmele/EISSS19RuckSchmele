@@ -5,7 +5,7 @@ app.use(express.json());
 var msgClient = new faye.Client('http://localhost:3000');
 
 app.get('/', (req, res) => {
-  res.json('hello world');
+  res.json({hello : "world"});
 });
 
 app.use('/anzeige',require('./anzeige'));

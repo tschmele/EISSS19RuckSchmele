@@ -129,7 +129,7 @@ msgClient.subscribe('/matching/benutzer').withChannel((channel, message) => {
     data.forEach(user => {
       var userLocation = new GeoPoint(user.data.standort._latitude, user.data.standort._longitude);
       var userDistance = userLocation.distanceTo(origin, true);
-      if (userDistance <= message.radius) {
+      if (userDistance <= message.radius && user.id != message.autor) {
         possible_matches.push({
           id : user.id,
           data : user.data,
