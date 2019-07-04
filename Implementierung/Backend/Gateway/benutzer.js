@@ -23,7 +23,9 @@ router.get('/:id', (req, res) => {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
       if (message.statusMessage)
         res.statusMessage = message.statusMessage;
-      res.status(message.status).json(message.results);
+      res.status(message.status).json({
+        benutzer : message.results
+      });
       return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
       msgClient.publish('/benutzer/' + req.params.id, {
@@ -51,7 +53,9 @@ router.post('/:id/kommentar', (req, res) => {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
       if (message.statusMessage)
         res.statusMessage = message.statusMessage;
-      res.status(message.status).json(message.results);
+      res.status(message.status).json({
+        benutzer : message.results
+      });
       return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
       msgClient.publish('/kommentar/neu', {

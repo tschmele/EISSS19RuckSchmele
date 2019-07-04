@@ -21,7 +21,9 @@ router.post('/', (req, res) => {
       if (message.status === 204 || (message.status >= 400 && message.status < 500))
         res.status(message.status).end();
       else
-        res.status(message.status).json(message.results);
+        res.status(message.status).json({
+          anzeigen : message.results
+        });
       return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
       if (req.body.autor === undefined)
@@ -47,7 +49,9 @@ router.get('/', (req, res) => {
       if (message.statusMessage) {
         res.statusMessage = message.statusMessage;
       }
-      res.status(message.status).json(message.results);
+      res.status(message.status).json({
+        anzeigen : message.results
+      });
       return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
       if (req.query.radius != null && req.query.radius > 0) {
@@ -77,7 +81,9 @@ router.get('/:id', (req, res) => {
     msgClient.subscribe('/antwort/' + req.header('origin'), message => {
       if (message.statusMessage)
         res.statusMessage = message.statusMessage;
-      res.status(message.status).json(message.results);
+      res.status(message.status).json({
+        anzeigen : message.results
+      });
       return msgClient.unsubscribe('/antwort/' + req.header('origin'));
     }).then(() => {
       msgClient.publish('/anzeige/' + req.params.id, {
