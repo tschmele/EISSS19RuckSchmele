@@ -1,4 +1,4 @@
-package com.example.foodinprogress.ui.display;
+package com.example.foodinprogress.notNeeded;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

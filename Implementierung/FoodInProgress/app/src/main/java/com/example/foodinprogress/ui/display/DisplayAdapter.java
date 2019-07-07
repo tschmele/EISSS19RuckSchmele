@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-//import android.widget.ImageView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,10 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodinprogress.R;
-import com.example.foodinprogress.dispalydata.Example;
+import com.example.foodinprogress.data.retrofit.Example;
 
 import java.util.ArrayList;
 import java.util.List;
+
+//import android.widget.ImageView;
 
 
 public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHolder> {
@@ -24,25 +25,25 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
     // private ArrayList<DisplayListItem> items;
     private List<Example> anzeigen;
 
-    private OnNoteListener noteListener;
+   // private OnNoteListener noteListener;
 
-    public DisplayAdapter(ArrayList<Example> anzeigen, OnNoteListener onNoteListener) {
+    public DisplayAdapter(List<Example> anzeigen/*, OnNoteListener onNoteListener*/) {
         //this.items = items;
         this.anzeigen = anzeigen;
-        this.noteListener = onNoteListener;
+       // this.noteListener = onNoteListener;
     }
 
     @NonNull
     @Override
     public DisplayAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_recyclerview_displayitem, parent, false);
-        return new ViewHolder(view, noteListener);
+        return new ViewHolder(view/*, noteListener*/);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         Example anzeige = anzeigen.get(position);
-        viewHolder.textView.setText(anzeige.getData().getTitel());
+        viewHolder.textView.setText(anzeige.getAnzeigen().get(position).getId());
         viewHolder.imageView.setImageResource(R.mipmap.ic_launcher);
     }
 
@@ -55,13 +56,13 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
         TextView textView;
         ImageView imageView;
 
-        OnNoteListener onNoteListener;
+        //OnNoteListener onNoteListener;
 
-        ViewHolder(View itemLayoutView, final OnNoteListener listener) {
+        ViewHolder(View itemLayoutView/*, final OnNoteListener listener*/) {
             super(itemLayoutView);
             textView = itemLayoutView.findViewById(R.id.item_title);
             imageView = itemLayoutView.findViewById(R.id.item_icon);
-            this.onNoteListener = listener;
+            //this.onNoteListener = listener;
 
             itemLayoutView.setOnClickListener(this);
         }
@@ -69,14 +70,14 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
         @Override
         public void onClick(View v) {
             Log.d(TAG, "View Holder On Click");
-            onNoteListener.onItemClick(getAdapterPosition());
+  //          onNoteListener.onItemClick(getAdapterPosition());
 
         }
     }
-
+/*
     public interface OnNoteListener {
         void onItemClick(int position);
     }
-
+*/
 }
 

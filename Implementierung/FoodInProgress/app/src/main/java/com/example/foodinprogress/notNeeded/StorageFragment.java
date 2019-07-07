@@ -1,4 +1,4 @@
-package com.example.foodinprogress;
+package com.example.foodinprogress.notNeeded;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodinprogress.R;
 import com.example.foodinprogress.ui.display.DisplayListItem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

@@ -19,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.foodinprogress.R;
-import com.example.foodinprogress.data.retrofit.DisplayPost;
 import com.google.gson.Gson;
 
 import java.util.Calendar;
@@ -28,7 +27,6 @@ import static com.example.foodinprogress.util.Constants.TAG;
 
 public class DisplayFragmentEdit extends Fragment {
 
-    private DisplayPost displayPost = new DisplayPost();
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Nullable
@@ -149,11 +147,7 @@ public class DisplayFragmentEdit extends Fragment {
                 month = month + 1;
 
                 String date = day + "." + month + "." + year;
-/*
-                displayInput.setDay(day);
-                displayInput.setMonth(month);
-                displayInput.setYear(year);
-  */
+
                 Log.d(TAG, "onDateSet: DD/MM/YYYY: " + date);
 
                 textView.setText(date);

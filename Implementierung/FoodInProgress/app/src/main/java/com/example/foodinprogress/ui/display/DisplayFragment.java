@@ -10,11 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodinprogress.DisplayAdapterListe;
 import com.example.foodinprogress.R;
 import com.example.foodinprogress.data.retrofit.AnzeigenInterface;
 import com.example.foodinprogress.data.retrofit.Example;
@@ -71,11 +67,13 @@ public class DisplayFragment extends Fragment /*implements DisplayAdapter.OnNote
     }
 
     public void buildRecyclerView(View view){
+
+/*
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_display);
         recyclerView.setHasFixedSize(true); // For the Performance
         LinearLayoutManager linearLayout = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayout);
-/*
+
         FloatingActionButton button = view.findViewById(R.id.displayButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,10 +82,12 @@ public class DisplayFragment extends Fragment /*implements DisplayAdapter.OnNote
                 fragmentTransaction.replace(R.id.fragment_container, new DisplayFragmentEdit()).commit();
             }
         });
-*/
+
         DisplayAdapterListe displayAdapter = new DisplayAdapterListe(generateData());
         recyclerView.setAdapter(displayAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+*/
+
 
 
 

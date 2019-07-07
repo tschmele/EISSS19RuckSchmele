@@ -1,11 +1,11 @@
-package com.example.foodinprogress.dispalydata;
+package com.example.foodinprogress.data.retrofit;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroClient {
 
-    private static final String ROOT_URL = "https://192.168.43.204:2000/";
+    private static final String ROOT_URL = "https://192.168.43.89:2000/";
 
     /**
      * Get Retrofit Instance

@@ -1,4 +1,4 @@
-package com.example.foodinprogress;
+package com.example.foodinprogress.notNeeded;
 
 import android.app.Dialog;
 import android.content.DialogInterface;

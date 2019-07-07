@@ -10,8 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.foodinprogress.ui.display.DisplayFragment;
-import com.example.foodinprogress.ui.display.DisplayFragmentMap;
+import com.example.foodinprogress.notNeeded.InformationFragment;
+import com.example.foodinprogress.notNeeded.ProfilFragment;
+import com.example.foodinprogress.notNeeded.SearchDialog;
+import com.example.foodinprogress.notNeeded.StorageFragment;
+import com.example.foodinprogress.notNeeded.DisplayFragmentMap;
 
 
 public class MainActivity extends AppCompatActivity /*implements BottomNavigationView.OnNavigationItemSelectedListener */{
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity /*implements BottomNavigatio
                 setTitle("Normale Anzeige");
                 break;
             case R.id.action_ic_back:
-                fragment = new DisplayFragment();
+                //fragment = new DisplayFragment();
                 setTitle("Normale Anzeige");
                 break;
             case R.id.action_ic_profil_pic:

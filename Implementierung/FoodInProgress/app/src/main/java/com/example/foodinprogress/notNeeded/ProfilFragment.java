@@ -1,4 +1,4 @@
-package com.example.foodinprogress;
+package com.example.foodinprogress.notNeeded;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.foodinprogress.R;
 
 public class ProfilFragment extends Fragment {
 

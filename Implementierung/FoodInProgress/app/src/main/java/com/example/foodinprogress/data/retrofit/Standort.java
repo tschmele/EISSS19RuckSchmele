@@ -1,5 +1,5 @@
 
-package com.example.foodinprogress.dispalydata;
+package com.example.foodinprogress.data.retrofit;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -12,6 +12,11 @@ public class Standort {
     @SerializedName("_longitude")
     @Expose
     private Double longitude;
+
+    public Standort(Double latitude, Double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     public Double getLatitude() {
         return latitude;

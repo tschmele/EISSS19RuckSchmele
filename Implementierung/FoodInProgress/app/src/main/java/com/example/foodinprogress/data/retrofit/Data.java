@@ -1,7 +1,8 @@
 
-package com.example.foodinprogress.dispalydata;
+package com.example.foodinprogress.data.retrofit;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -18,7 +19,7 @@ public class Data {
     private String titel;
     @SerializedName("tags")
     @Expose
-    private List<String> tags = null;
+    private String[] tags = null;
     @SerializedName("reserviert")
     @Expose
     private Boolean reserviert;
@@ -28,15 +29,23 @@ public class Data {
     @SerializedName("beschreibung")
     @Expose
     private String beschreibung;
+    @SerializedName("gewicht")
+    @Expose
+    private Double gewicht;
     @SerializedName("verbrauch")
     @Expose
     private Verbrauch verbrauch;
     @SerializedName("status")
     @Expose
     private String status;
-    @SerializedName("gewicht")
-    @Expose
-    private Double gewicht;
+
+    public Data(Standort standort, Boolean anfrage, String titel, String[] tags, String beschreibung) {
+        this.standort = standort;
+        this.anfrage = anfrage;
+        this.titel = titel;
+        this.tags = tags;
+        this.beschreibung = beschreibung;
+    }
 
     public Standort getStandort() {
         return standort;
@@ -62,11 +71,11 @@ public class Data {
         this.titel = titel;
     }
 
-    public List<String> getTags() {
+    public String[] getTags() {
         return tags;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(String[] tags) {
         this.tags = tags;
     }
 
@@ -94,6 +103,14 @@ public class Data {
         this.beschreibung = beschreibung;
     }
 
+    public Double getGewicht() {
+        return gewicht;
+    }
+
+    public void setGewicht(Double gewicht) {
+        this.gewicht = gewicht;
+    }
+
     public Verbrauch getVerbrauch() {
         return verbrauch;
     }
@@ -108,14 +125,6 @@ public class Data {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Double getGewicht() {
-        return gewicht;
-    }
-
-    public void setGewicht(Double gewicht) {
-        this.gewicht = gewicht;
     }
 
 }

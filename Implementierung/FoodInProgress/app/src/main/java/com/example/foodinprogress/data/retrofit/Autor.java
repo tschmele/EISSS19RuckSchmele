@@ -1,5 +1,5 @@
 
-package com.example.foodinprogress.dispalydata;
+package com.example.foodinprogress.data.retrofit;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -9,7 +9,6 @@ public class Autor {
     @SerializedName("id")
     @Expose
     private String id;
-
     @SerializedName("name")
     @Expose
     private String name;

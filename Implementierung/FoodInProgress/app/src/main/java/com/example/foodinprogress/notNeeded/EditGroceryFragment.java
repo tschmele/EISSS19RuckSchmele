@@ -1,4 +1,4 @@
-package com.example.foodinprogress;
+package com.example.foodinprogress.notNeeded;
 
 import android.app.DatePickerDialog;
 import android.graphics.Color;
@@ -18,20 +18,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.foodinprogress.R;
+
 import java.util.Calendar;
 
 import static com.example.foodinprogress.util.Constants.TAG;
 
-public class EditStorageFragment extends Fragment {
+public class EditGroceryFragment extends Fragment {
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_storage_detail_edit, container, false);
+        View view = inflater.inflate(R.layout.fragment_grocery_detail_edit, container, false);
 
-        final TextView textView = view.findViewById(R.id.textView_storageEdit_detail_durability);
+        final TextView textView = view.findViewById(R.id.textView_groceryEdit_detail_durability);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,7 +49,7 @@ public class EditStorageFragment extends Fragment {
         Log.d(TAG, "Edit nach Text view");
 
 
-        final Button buttonOk = view.findViewById(R.id.button_storageEdit_detail_ok);
+        final Button buttonOk = view.findViewById(R.id.button_detail_groceryEdit_ok);
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +57,7 @@ public class EditStorageFragment extends Fragment {
             }
         });
 
-        final Button buttonCancel = view.findViewById(R.id.button_storageEdit_detail_cancel);
+        final Button buttonCancel = view.findViewById(R.id.button_detail_groceryEdit_cancel);
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +65,7 @@ public class EditStorageFragment extends Fragment {
             }
         });
 
-        final ImageView imageViewCamera = view.findViewById(R.id.icon_storage_camera);
+        final ImageView imageViewCamera = view.findViewById(R.id.icon_grocery_camera);
         imageViewCamera.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -71,7 +73,7 @@ public class EditStorageFragment extends Fragment {
             }
         });
 
-        final ImageView imageViewUpload = view.findViewById(R.id.icon_storage_upload);
+        final ImageView imageViewUpload = view.findViewById(R.id.icon_grocery_upload);
         imageViewUpload.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

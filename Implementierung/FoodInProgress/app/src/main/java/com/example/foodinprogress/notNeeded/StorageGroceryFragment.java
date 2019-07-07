@@ -1,13 +1,9 @@
-package com.example.foodinprogress.ui.display;
+package com.example.foodinprogress.notNeeded;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +12,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodinprogress.DisplayAdapterOld;
 import com.example.foodinprogress.R;
+import com.example.foodinprogress.ui.display.DisplayListItem;
 
 
-public class DisplayFragmentOwn extends Fragment {
+public class StorageGroceryFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState){
@@ -31,13 +27,13 @@ public class DisplayFragmentOwn extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_display2, container, false);
+        View view = inflater.inflate(R.layout.fragment_storage, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_display);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_grocery);
         LinearLayoutManager linearLayout =  new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayout);
-        DisplayAdapterOld displayAdapter = new DisplayAdapterOld(generateData() );
-        recyclerView.setAdapter(displayAdapter);
+        StorageAdapter storageAdapter = new StorageAdapter(generateData());
+        recyclerView.setAdapter(storageAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         return view;
@@ -63,10 +59,13 @@ public class DisplayFragmentOwn extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 */
-    public DisplayListItem[] generateData(){
+    private DisplayListItem[] generateData(){
         DisplayListItem[] displayListItems = {
                 new DisplayListItem("Pin", R.drawable.ic_pin),
-                new DisplayListItem("Info", R.drawable.ic_information)
+                new DisplayListItem("Info", R.drawable.ic_information),
+                new DisplayListItem("Pin", R.drawable.ic_pin),
+                new DisplayListItem("Pin", R.drawable.ic_pin)
+
         };
         return displayListItems;
 

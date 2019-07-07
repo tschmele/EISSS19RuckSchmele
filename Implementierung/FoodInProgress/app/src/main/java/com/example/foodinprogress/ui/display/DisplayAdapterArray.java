@@ -12,17 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodinprogress.ui.display.DisplayListItem;
 
 
-public class DisplayAdapterOld extends RecyclerView.Adapter<DisplayAdapterOld.ViewHolder> {
+public class DisplayAdapterArray extends RecyclerView.Adapter<DisplayAdapterArray.ViewHolder> {
 
     private DisplayListItem[] items;
 
-    public DisplayAdapterOld(DisplayListItem[] items) {
+    public DisplayAdapterArray(DisplayListItem[] items) {
         this.items = items;
     }
 
     @NonNull
     @Override
-    public DisplayAdapterOld.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DisplayAdapterArray.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_recyclerview_storageitem, null);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
