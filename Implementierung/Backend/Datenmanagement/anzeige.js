@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
   var anzeige_neu = req.body;
 
   anzeige_neu.autor = db.collection('/Benutzer/').doc(anzeige_neu.autor);
-  anzeige_neu.standort = new admin.firestore.GeoPoint(anzeige_neu.standort._latitude, anzeige_neu._longitude);
+  anzeige_neu.standort = new admin.firestore.GeoPoint(anzeige_neu.standort._latitude, anzeige_neu.standort._longitude);
   if (anzeige_neu.verbrauch)
     anzeige_neu.verbrauch.datum = admin.firestore.Timestamp.fromDate(new Date(anzeige_neu.verbrauch.datum));
   anzeige_neu.reserviert = false;
