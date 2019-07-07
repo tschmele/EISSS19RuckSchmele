@@ -1,10 +1,15 @@
 
-package com.example.foodinprogress.dispalydata;
+package com.example.foodinprogress.data.retrofit;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Example {
+public class Anzeigen {
+
+
+
+
+
 
     @SerializedName("id")
     @Expose
