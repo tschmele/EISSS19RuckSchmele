@@ -7,7 +7,7 @@
     tools:ignore="RtlSymmetry" >
 
     <ImageView
-        android:id="@+id/image_gocery_view"
+        android:id="@+id/image_detail_view"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="10dp"

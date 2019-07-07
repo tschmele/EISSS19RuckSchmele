@@ -11,52 +11,53 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodinprogress.R;
-import com.example.foodinprogress.data.retrofit.Example;
-
-import java.util.ArrayList;
-import java.util.List;
-
-//import android.widget.ImageView;
 
 
-public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHolder> {
+import static com.example.foodinprogress.util.Constants.TAG;
 
-    private static final String TAG = "DispalyAdapter";
-    private List<Example> anzeigen;
+public class DisplayAdapterNode extends RecyclerView.Adapter<DisplayAdapterNode.ViewHolder> {
 
 
-    public DisplayAdapter(List<Example> anzeigen) {
-        this.anzeigen = anzeigen;
+
+    private DisplayListItem[] items;
+    private OnNoteListener noteListener;
+
+    public DisplayAdapterNode(DisplayListItem[] items, OnNoteListener onNoteListener) {
+        this.items = items;
+        this.noteListener = onNoteListener;
     }
 
     @NonNull
     @Override
-    public DisplayAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DisplayAdapterNode.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_recyclerview_displayitem, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, noteListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        Example anzeige = anzeigen.get(position);
-        viewHolder.textView.setText(anzeige.getAnzeigen().get(position).getId());
-        viewHolder.imageView.setImageResource(R.mipmap.ic_launcher);
+        viewHolder.textView.setText(items[position].getTitle());
+        viewHolder.textViewTags.setText(items[position].getTags());
+        viewHolder.imageView.setImageResource(items[position].getImageURL());
     }
 
     @Override
     public int getItemCount() {
-        return anzeigen.size();
+        return items.length;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView textView;
+        TextView textViewTags;
         ImageView imageView;
 
-        ViewHolder(View itemLayoutView) {
+        OnNoteListener onNoteListener;
+
+        ViewHolder(View itemLayoutView, final OnNoteListener listener) {
             super(itemLayoutView);
             textView = itemLayoutView.findViewById(R.id.item_title);
             imageView = itemLayoutView.findViewById(R.id.item_icon);
-            //this.onNoteListener = listener;
+            this.onNoteListener = listener;
 
             itemLayoutView.setOnClickListener(this);
         }
@@ -64,7 +65,14 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
         @Override
         public void onClick(View v) {
             Log.d(TAG, "View Holder On Click");
+            onNoteListener.onItemClick(getAdapterPosition());
+
         }
     }
-}
 
+    public interface OnNoteListener {
+        void onItemClick(int position);
+    }
+
+
+}

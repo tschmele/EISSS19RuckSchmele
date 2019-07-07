@@ -29,16 +29,17 @@ public class StorageGroceryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_storage, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_grocery);
+
+        return view;
+    }
+/*
+RecyclerView recyclerView = view.findViewById(R.id.recyclerView_grocery);
         LinearLayoutManager linearLayout =  new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayout);
         StorageAdapter storageAdapter = new StorageAdapter(generateData());
         recyclerView.setAdapter(storageAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        return view;
-    }
-/*
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.top_nav_menu, menu);
@@ -58,7 +59,7 @@ public class StorageGroceryFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-*/
+
     private DisplayListItem[] generateData(){
         DisplayListItem[] displayListItems = {
                 new DisplayListItem("Pin", R.drawable.ic_pin),
@@ -70,5 +71,5 @@ public class StorageGroceryFragment extends Fragment {
         return displayListItems;
 
     }
-
+*/
 }

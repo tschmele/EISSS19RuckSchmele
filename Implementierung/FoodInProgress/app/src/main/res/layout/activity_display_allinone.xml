@@ -39,17 +39,13 @@
             tools:layout_editor_absoluteX="25dp"
             tools:layout_editor_absoluteY="0dp" />
 
-
-
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewAllInOne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="75dp"
-        android:text="@string/generate_new"
-        />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view_act"

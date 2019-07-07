@@ -34,7 +34,7 @@ public class StorageFragment extends Fragment {
 
         return view;
     }
-
+/*
     public DisplayListItem[] generateData() {
         DisplayListItem[] displayListItems = {
                 new DisplayListItem("Back", R.drawable.ic_back),
@@ -53,7 +53,7 @@ public class StorageFragment extends Fragment {
         return displayListItems;
 
     }
-
+*/
     private void buildRecyclierView(View view){
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_storage);
         LinearLayoutManager linearLayout = new LinearLayoutManager(getContext());
@@ -76,10 +76,10 @@ public class StorageFragment extends Fragment {
                 fragmentTransaction.replace(R.id.fragment_container, new EditGroceryFragment()).commit();
             }
         });
-        StorageAdapter storageAdapter = new StorageAdapter(generateData());
+        /*StorageAdapter storageAdapter = new StorageAdapter(generateData());
         recyclerView.setAdapter(storageAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-    }
+    */}
 
 }
 

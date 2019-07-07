@@ -13,18 +13,9 @@ import retrofit2.http.POST;
 
 public interface AnzeigenInterface {
 
-    /*
-    @GET("retrofit/json_object.json/")
-    Call<Anzeigenliste> getDisplayPosts();
-    */
-
     @Headers("origin: NOT1nAI7mVv7v2bOM7oY")
     @GET("anzeige")
     Call<List<Example>> getDisplayPosts();
-
-    @Headers("origin: NOT1nAI7mVv7v2bOM7oY")
-    @GET("anzeige")
-    Call<Example> getDisplayPost();
 
     @Headers({"origin: NOT1nAI7mVv7v2bOM7oY",
             "Conten-Type: application/json"})
